@@ -54,15 +54,10 @@
                   <i class="ti-menu"></i>
                   <span>All Categories</span>
                   <ul class="depart-hover">
-                      <li class="active"><a href="#">Wedding</a></li>
-                      <li><a href="#">Prewedding</a></li>
-                      <li><a href="#">Travel</a></li>
-                      <li><a href="#">Portrait</a></li>
-                      <li><a href="#">Lanscape</a></li>
-                      <li><a href="#">Stage</a></li>
-                      <li><a href="#">Fashion</a></li>
-                      <li><a href="#">Sport</a></li>
-                      <li><a href="#">Journalism</a></li>
+                       @foreach ($kategori as $item)
+                      <!-- <li class="active"><a href="#">Wedding</a></li> -->
+                      <li><a href="#">{{$item->nama_kategori}}</a></li>
+                      @endforeach
                   </ul>
               </div>
           </div>

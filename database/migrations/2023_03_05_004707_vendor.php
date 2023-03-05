@@ -21,6 +21,7 @@ class Vendor extends Migration
             $table->string('no_telp');
             $table->string('foto');
             $table->string('paket');
+            $table->integer('id_kategori');
             $table->integer('hapus')->default(0);
             $table->string('created_at');
             $table->string('updated_at');
@@ -37,3 +38,4 @@ class Vendor extends Migration
         //
     }
 }
+
