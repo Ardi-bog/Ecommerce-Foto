@@ -197,8 +197,38 @@ class AdminController extends Controller
     }
 
     function pesanan(){
-        $pesanan = DB::table('pesanan')->get();
+        $pesanan = DB::table('pesanan')->select(
+            'pesanan.*', 'vendor.nama_vendor', 'users.name'
+        )->join(
+            'vendor', 'vendor.id', '=', 'pesanan.id_vendor'
+        )->join(
+            'users', 'users.id', '=', 'pesanan.id_user'
+        )->get();
         return view('admin.menu.pesanan', ['pesanan' => $pesanan]);
+    }
+
+    function profile(){
+        $data['user'] = DB::table('admin')->first();
+        return view('admin.menu.user_profile', $data);
+    }
+    function profileEdit(Request $request){
+        $data_update = [
+            'name' => $request->nama,
+        ];
+        if ($request->password != '') {
+            $data_update['password'] = Hash::make($request->password);
+        }
+        $update = DB::table('admin')->where(['id' => 1])->update($data_update);
+        if ($update) {
+            return redirect('/admin/profile')->with(['status' => 1 , 'msg' => 'Berhasil Mengubah Profile']);
+        }else{
+            return redirect('/admin/profile')->with(['status' => 0 , 'msg' => 'Gagal Mengubah Profile']);
+        }
+    }
+
+    function user(){
+        $data['user'] = DB::table('users')->get();
+        return view('admin.menu.user', $data);
     }
 
 }

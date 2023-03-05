@@ -48,4 +48,9 @@ Route::get('/admin/vendor/detail/{id}', [AdminController::class, 'vendorDetail']
 Route::post('/admin/vendor/edit', [AdminController::class, 'vendorEdit']);
 Route::post('/admin/vendor/hapus', [AdminController::class, 'vendorHapus']);
 
-Route::get('/admin/pesanan', [AdminController::class, 'index'])->name('pesanan');
+Route::get('/admin/user', [AdminController::class, 'user']);
+
+Route::get('/admin/profile', [AdminController::class, 'profile']);
+Route::post('/admin/editProfile', [AdminController::class, 'profileEdit']);
+
+Route::get('/admin/pesanan', [AdminController::class, 'pesanan'])->name('pesanan');

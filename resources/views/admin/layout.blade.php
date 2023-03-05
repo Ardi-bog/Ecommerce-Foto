@@ -86,10 +86,10 @@
                                     </a>
                                         <ul class="dropdown-menu dropdown-menu-end language-dropdown" aria-labelledby="languageDropDown">
                                             <li>
-                                                <a class="dropdown-item" href="./profile">Edit Profile</a>
+                                                <a class="dropdown-item" href="{{ url('/admin/profile') }}">Edit Profile</a>
                                             </li>
                                             <li>
-                                                <a class="dropdown-item" href="./admin/logout">Logout</a>
+                                                <a class="dropdown-item" href="{{ url('/admin/logout') }}">Logout</a>
                                             </li>
                                         </ul>
                                 </li>
