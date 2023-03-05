@@ -29,8 +29,15 @@ Route::get('/admin/logout', [AdminController::class, 'logout']);
 Route::get('/admin', [AdminController::class, 'index'])->name('dashboard');
 
 Route::get('/admin/kategori', [AdminController::class, 'kategori'])->name('kategori');
-Route::post('/admin/kategori/tambah', [AdminController::class, 'kategori']);
-Route::post('/admin/kategori/edit', [AdminController::class, 'kategori']);
+Route::post('/admin/kategori/tambah', [AdminController::class, 'kategoriInsert']);
+Route::get('/admin/kategori/detail/{id}', [AdminController::class, 'kategoriDetail']);
+Route::post('/admin/kategori/edit', [AdminController::class, 'kategoriEdit']);
+Route::post('/admin/kategori/hapus', [AdminController::class, 'kategoriHapus']);
 
-Route::get('/admin/vendor', [AdminController::class, 'index'])->name('vendor');
+Route::get('/admin/vendor', [AdminController::class, 'vendor'])->name('vendor');
+Route::post('/admin/vendor/tambah', [AdminController::class, 'vendorInsert']);
+Route::get('/admin/vendor/detail/{id}', [AdminController::class, 'vendorDetail']);
+Route::post('/admin/vendor/edit', [AdminController::class, 'vendorEdit']);
+Route::post('/admin/vendor/hapus', [AdminController::class, 'vendorHapus']);
+
 Route::get('/admin/pesanan', [AdminController::class, 'index'])->name('pesanan');

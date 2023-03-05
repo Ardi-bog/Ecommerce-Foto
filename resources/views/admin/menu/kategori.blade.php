@@ -30,12 +30,13 @@
                                     @foreach ($kategori as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->kategori }}</td>
+                                        <td>{{ $item->nama_kategori }}</td>
                                         <td>
-                                            <button style='width:120px;' onclick="ediKategori({{ $item->id }})" class="btn btn-primary btn-sm" id="btn-edit{{ $item->id }}">Edit</button><br><br>
-                                            <form action="./pelanggan/nonaktif/{{ $item->id }}" method="post" style="display:inline;">
+                                            <button style='width:120px;' onclick="ediKategori({{ $item->id }})" class="btn btn-primary btn-sm" id="btn-edit{{ $item->id }}">Edit</button>
+                                            <form action="{{ url('/admin/kategori/hapus') }}" method="post" style="display:inline;">
                                                 @csrf
-                                                <button style='width:120px;' onclick="return confirm('Yakin ingin menghapus kategori?')" type="submit" class="btn btn-danger btn-sm">Hapu</button>
+                                                <input type="hidden" name="id" value="{{ $item->id }}">
+                                                <button style='width:120px;' onclick="return confirm('Yakin ingin menghapus kategori?')" type="submit" class="btn btn-danger btn-sm">Hapus</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -57,12 +58,12 @@
                 <h5 class="modal-title" id="tambahKategoriLabel">Tambah</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="./kategori/tambah" method="post">
+            <form action="{{ url('/admin/kategori/tambah') }}" method="post">
                 <div class="modal-body">
                     @csrf
                     <div class="form-group">
                         <label for="inputNama" class="form-label">Nama</label>
-                        <input type="text" class="form-control" id="inputNama" name="nama" required>
+                        <input type="text" class="form-control" id="inputNama" name="nama_kategori" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -82,12 +83,13 @@
                 <h5 class="modal-title" id="ediKategoriLabel">Edit</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form id="formEdit" action="./kategori/edit" method="post">
+            <form id="formEdit" action="{{ url('/admin/kategori/edit') }}" method="post">
                 <div class="modal-body">
                     @csrf
                     <div class="form-group">
                         <label for="editNama" class="form-label">Nama</label>
-                        <input type="text" class="form-control" id="editNama" name="nama" required>
+                        <input type="text" class="form-control" id="editNama" name="nama_kategori" required>
+                        <input type="hidden" class="form-control" id="editId" name="id" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -102,14 +104,15 @@
 <script>
     function ediKategori(id){
         $.ajax({
-            url: './pelanggan/edit/'+id,
+            url: "{{ url('/admin/kategori/detail') }}/"+id,
             type: 'GET',
+            dataType: 'json',
             beforeSend:function () {
                 $('#btn-edit'+id).html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...`).attr('disabled',true);
-                $('#wrapper-modal-edit').html(`<center><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...</center>`);
             },
             success: function(response){
-                $('#wrapper-modal-edit').html(response);
+                $('#editNama').val(response.nama_kategori);
+                $('#editId').val(response.id);
                 $('#ediKategori').modal('show');
                 $('#btn-edit'+id).html('Edit').attr('disabled',false);
             }

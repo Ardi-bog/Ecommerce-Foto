@@ -14,8 +14,20 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        $this->call([
-            AdminSeeder::class,
+
+        DB::table('admin')->insert([
+            'name' => 'Admin',
+            'username' => 'admin',
+            'password' => Hash::make('admin'),
         ]);
+
+        DB::table('kategori')->insert([
+            'nama_kategori' => 'Wedding',
+            'hapus' => 0,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ]);
+
+
     }
 }

@@ -7,16 +7,16 @@
             Menu
         </li>
         <li class="{{ $link == 'dashboard' ? 'active-page' : '' }}">
-            <a href="." class="{{ $link == '' ? 'active' : ''}}"><i class="material-icons-two-tone">dashboard</i>Dashboard</a>
+            <a href="{{ url('/admin') }}" class="{{ $link == '' ? 'active' : ''}}"><i class="material-icons-two-tone">dashboard</i>Dashboard</a>
         </li>
         <li class="{{ $link == 'kategori' ? 'active-page' : '' }}">
-            <a href="./kategori" class="{{ $link == '' ? 'active' : ''}}"><i class="material-icons-two-tone">dashboard</i>Kategori</a>
+            <a href="{{ url('/admin/kategori') }}" class="{{ $link == '' ? 'active' : ''}}"><i class="material-icons-two-tone">dashboard</i>Kategori</a>
         </li>
         <li class="{{ $link == 'vendor' ? 'active-page' : '' }}">
-            <a href="./vendor" class="{{ $link == '' ? 'active' : ''}}"><i class="material-icons-two-tone">dashboard</i>Vendor</a>
+            <a href="{{ url('/admin/vendor') }}" class="{{ $link == '' ? 'active' : ''}}"><i class="material-icons-two-tone">dashboard</i>Vendor</a>
         </li>
         <li class="{{ $link == 'pesanan' ? 'active-page' : '' }}">
-            <a href="./pesanan" class="{{ $link == '' ? 'active' : ''}}"><i class="material-icons-two-tone">dashboard</i>Pesanan</a>
+            <a href="{{ url('/admin/pesanan') }}n" class="{{ $link == '' ? 'active' : ''}}"><i class="material-icons-two-tone">dashboard</i>Pesanan</a>
         </li>
     </ul>
 </div>

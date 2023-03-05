@@ -14,6 +14,17 @@ class Vendor extends Migration
     public function up()
     {
         //
+        Schema::create('vendor', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama_vendor');
+            $table->string('alamat');
+            $table->string('no_telp');
+            $table->string('foto');
+            $table->string('paket');
+            $table->integer('hapus')->default(0);
+            $table->string('created_at');
+            $table->string('updated_at');
+        });
     }
 
     /**

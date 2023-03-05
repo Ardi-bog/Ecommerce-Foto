@@ -109,7 +109,7 @@
     <script src="{{ asset('/') }}assets-admin/js/main.min.js"></script>
     <script src="{{ asset('/') }}assets-admin/plugins/datatables/datatables.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="{{ asset('/') }}assets-admin/plugins/select2/js/select2.full.min.js"></script>
+    <!-- <script src="{{ asset('/') }}assets-admin/plugins/select2/js/select2.full.min.js"></script> -->
     <script src="{{ asset('/') }}assets-admin/js/pages/select2.js"></script>
     <script>
         $(document).ready(function() {
