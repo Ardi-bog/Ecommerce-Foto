@@ -25,7 +25,7 @@
                                         <th>Vendor</th>
                                         <th>Alamat</th>
                                         <th>No Telp</th>
-                                        <th>Paket</th>
+                                        <th>Kategori</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -36,7 +36,7 @@
                                         <td>{{ $item->nama_vendor }}</td>
                                         <td>{{ $item->alamat }}</td>
                                         <td>{{ $item->no_telp }}</td>
-                                        <td>{{ $item->paket }}</td>
+                                        <td>{{ $item->nama_kategori }}</td>
                                         <td>
                                             <button style='width:120px;' onclick="editVendor({{ $item->id }})" class="btn btn-primary btn-sm" id="btn-edit{{ $item->id }}">Edit</button>
                                             <form action="{{ url('/admin/vendor/hapus') }}" method="post" style="display:inline;">
@@ -144,6 +144,8 @@
                     <div class="form-group">
                         <label for="inputFoto" class="form-label">Foto</label>
                         <input type="file" class="form-control" id="editFoto" name="foto">
+                        <a href="" id="lihatFoto" target="_blank" class="btn btn-succes">Lihat Foto</a>
+
                     </div>
                     <div class="form-group">
                         <label for="inputPaket" class="form-label">Paket</label>
@@ -158,6 +160,8 @@
         </div>
     </div>
 </div>
+
+
 
 <script>
     $(document).ready(function() {
@@ -181,6 +185,7 @@
                 $('#editPaket').summernote('code', response.paket);
                 $("#editKategori option").removeAttr('selected');
                 $(`#editKategori option[value='${response.id_kategori}']`).attr('selected',true);
+                $('#lihatFoto').attr('href', "{{ url('/foto_vendor') }}/"+response.foto);
                 $('#editId').val(response.id);
                 $('#editVendor').modal('show');
                 $('#btn-edit'+id).html('Edit').attr('disabled',false);

@@ -92,7 +92,11 @@ class AdminController extends Controller
     }
 
     function vendor(){
-        $data['vendor'] = DB::table('vendor')->where(['hapus' => 0])->get();
+        $data['vendor'] = DB::table('vendor')->select(
+            'vendor.*', 'kategori.nama_kategori'
+        )->where(['vendor.hapus' => 0])->join(
+            'kategori', 'kategori.id', '=', 'vendor.id_kategori'
+        )->get();
         $data['kategori'] = DB::table('kategori')->where(['hapus' => 0])->get();
         return view('admin.menu.vendor', $data);
     }

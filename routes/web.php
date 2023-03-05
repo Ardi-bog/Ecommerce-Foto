@@ -18,6 +18,7 @@ use App\Http\Controllers\UserController;
 
 Route::get('/', [UserController::class, 'index']);
 Route::get('/blog', [BlogController::class, 'index']);
+Route::get('/login', [UserController::class, 'login'])->middleware('guest:user');
 
 
 //Admin
