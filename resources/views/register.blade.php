@@ -9,23 +9,29 @@
             <div class="col-lg-4">
                 <div class="card">
                     <div class="card-body">
-                        <center><h3>Login</h3></center>
-                        <form action="{{ url('/doLogin') }}" method="post">
+                        <center><h3>Register</h3></center>
 
-                            @if(session('error'))
-                                <div class="alert alert-danger">
-                                    {{ session('error') }}
-                                </div>
-                            @endif
+                        @if(session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
 
 
-                            @if(session('success'))
-                                <div class="alert alert-success">
-                                    {{ session('success') }}
-                                </div>
-                            @endif
-
+                        @if(session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+                        
+                        <form action="{{ url('/doRegister') }}" method="post">
                             @csrf
+                            <br>
+                            <div class="form-row">
+                                <label for="">Nama</label>
+                                <input type="text" name="nama" class="form-control" required>
+                            </div>
+                            <br>
                             <div class="form-row">
                                 <label for="">Email</label>
                                 <input type="email" name="email" class="form-control" required>
@@ -37,7 +43,7 @@
                             </div>
                             <br>
                             <div class="form-row">
-                                <button type="submit" class="btn btn-primary col-md-12" style="background-color:#e7ab3c;border: 1px solid #e7ab3c;">Login</button>
+                                <button type="submit" class="btn btn-primary col-md-12" style="background-color:#e7ab3c;border: 1px solid #e7ab3c;">Register</button>
                             </div>
                         </form>
                         <br>
@@ -45,7 +51,6 @@
                             <a href="{{ url('') }}" class="btn btn-primary col-md-12" style="background-color:black;border: 1px solid black;color:white;">Home</a>
 
                         </div>
-
                     </div>
                 </div>
             </div>

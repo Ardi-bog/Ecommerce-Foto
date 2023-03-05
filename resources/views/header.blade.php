@@ -2,33 +2,34 @@
 <header class="header-section">
   <div class="header-top">
       <div class="container">
-          <div class="ht-left">
-              <div class="mail-service">
-                  <i class=" fa fa-envelope"></i>
-                  fotomedia@gmail.com
-              </div>
-              <div class="phone-service">
-                  <i class=" fa fa-phone"></i>
-                  +6282231375373
-              </div>
-          </div>
-          <div class="ht-right">
-              <a href="{{ url('/login') }}" class="login-panel"><i class="fa fa-user"></i>Login</a>
-              <div class="lan-selector" hidden>
-                  <select class="language_drop" name="countries" id="countries" style="width:300px">
-                      <option value='yt' data-image="assets/img/flag-1.jpg" data-imagecss="flag yt"
-                          data-title="English">English</option>
-                      <option value='yu' data-image="assets/img/flag-2.jpg" data-imagecss="flag yu"
-                          data-title="Bangladesh">German </option>
-                  </select>
-              </div>
-          </div>
+            <div class="ht-left">
+                <div class="mail-service">
+                    <i class=" fa fa-envelope"></i>
+                    fotomedia@gmail.com
+                </div>
+                <div class="phone-service">
+                    <i class=" fa fa-phone"></i>
+                    +6282231375373
+                </div>
+            </div>
+            @if(!Auth::guard('user')->check())
+            <div class="ht-right">
+                <a href="{{ url('/register') }}" class="login-panel" style="border:0 !important;"><i class="fa fa-user"></i>Register</a>
+                <a href="{{ url('/login') }}" class="login-panel" style="border:0 !important;"><i class="fa fa-user"></i>Login</a>
+            </div>
+            @else
+
+            <div class="ht-right">
+                <a href="{{ url('/logout') }}" class="login-panel" style="border:0 !important;">Logout</a>
+                <a href="#" class="login-panel" style="border:0 !important;"><i class="fa fa-user"></i>{{ Auth::guard('user')->user()->name }}</a>
+            </div>
+            @endif
       </div>
   </div>
     @php
         $link = request()->segment(1);
     @endphp
-    @if($link != 'login')
+    @if($link != 'login' && $link != 'register')
     <div class="container">
         <div class="inner-header">
             <div class="row ">
