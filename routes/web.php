@@ -23,6 +23,8 @@ Route::post('/doLogin', [UserController::class, 'doLogin'])->middleware('guest:u
 Route::get('/register', [UserController::class, 'register'])->middleware('guest:user');
 Route::post('/doRegister', [UserController::class, 'doRegister'])->middleware('guest:user');
 
+Route::post('/pesan', [UserController::class, 'pesan'])->middleware('auth:user');
+
 Route::get('/logout', [UserController::class, 'logout']);
 
 
