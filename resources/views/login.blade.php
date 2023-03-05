@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('content')
+@section
 
 <section class="hero-section">
   <div class="hero-items owl-carousel">
@@ -267,5 +267,4 @@
       </div>
   </div>
 </section>
-
 @endsection

@@ -81,7 +81,7 @@
                     </div>
                     <div class="form-group">
                         <label for="inputFoto" class="form-label">Foto</label>
-                        <input type="text" class="form-control" id="inputFoto" name="foto" required>
+                        <input type="file" class="form-control" id="inputFoto" name="foto" required>
                     </div>
                     <div class="form-group">
                         <label for="inputPaket" class="form-label">Paket</label>
@@ -124,7 +124,7 @@
                     </div>
                     <div class="form-group">
                         <label for="inputFoto" class="form-label">Foto</label>
-                        <input type="text" class="form-control" id="editFoto" name="foto" required>
+                        <input type="file" class="form-control" id="editFoto" name="foto" required>
                     </div>
                     <div class="form-group">
                         <label for="inputPaket" class="form-label">Paket</label>
