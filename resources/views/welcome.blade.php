@@ -2,6 +2,9 @@
 
 @section('content')
 
+@php
+    $kategori = DB::table('kategori')->where(['hapus' => 0])->get();
+@endphp
 <section class="hero-section">
   <div class="hero-items owl-carousel">
       <div class="single-hero-items set-bg" data-setbg="assets/img/hero-1.jpg">

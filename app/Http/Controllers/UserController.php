@@ -11,8 +11,7 @@ class UserController extends Controller
 {
     //
     function index(){
-        $data['kategori'] = DB::table('kategori')->where(['hapus' => 0])->get();
-        return view('welcome',$data);
+        return view('welcome');
     }
     function login(){
         return view('login');
