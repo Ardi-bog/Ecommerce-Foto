@@ -64,12 +64,21 @@
                 <h5 class="modal-title" id="tambahVendorLabel">Tambah</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ url('/admin/vendor/tambah') }}" method="post">
+            <form action="{{ url('/admin/vendor/tambah') }}" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     @csrf
                     <div class="form-group">
                         <label for="inputNama" class="form-label">Nama</label>
                         <input type="text" class="form-control" id="inputNama" name="nama_vendor" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputKategori" class="form-label">Kategori</label>
+                        <select name="id_kategori" id="inputKategori" class="form-control" required>
+                            <option value="">Pilih Kategori</option>
+                            @foreach ($kategori as $item)
+                            <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="inputAlamat" class="form-label">Alamat</label>
@@ -81,11 +90,12 @@
                     </div>
                     <div class="form-group">
                         <label for="inputFoto" class="form-label">Foto</label>
-                        <input type="file" class="form-control" id="inputFoto" name="foto" required>
+                        <input type="file" class="form-control" accept="image/jpg,image/jpeg,image/png" id="inputFoto" name="foto" required>
                     </div>
                     <div class="form-group">
                         <label for="inputPaket" class="form-label">Paket</label>
-                        <input type="text" class="form-control" id="inputPaket" name="paket" required>
+                        <textarea name="paket" class="summernote" id="inputPaket" required></textarea>
+
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -105,7 +115,7 @@
                 <h5 class="modal-title" id="editVendorLabel">Edit</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form id="formEdit" action="{{ url('/admin/vendor/edit') }}" method="post">
+            <form id="formEdit" action="{{ url('/admin/vendor/edit') }}" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     @csrf
                     <div class="form-group">
@@ -114,6 +124,15 @@
                         <input type="hidden" class="form-control" id="editId" name="id" required>
                     </div>
 
+                    <div class="form-group">
+                        <label for="editKategori" class="form-label">Kategori</label>
+                        <select id="editKategori"  name="id_kategori" class="form-control" required>
+                            <option value="">Pilih Kategori</option>
+                            @foreach ($kategori as $item)
+                            <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="form-group">
                         <label for="inputAlamat" class="form-label">Alamat</label>
                         <input type="text" class="form-control" id="editAlamat" name="alamat" required>
@@ -124,11 +143,11 @@
                     </div>
                     <div class="form-group">
                         <label for="inputFoto" class="form-label">Foto</label>
-                        <input type="file" class="form-control" id="editFoto" name="foto" required>
+                        <input type="file" class="form-control" id="editFoto" name="foto">
                     </div>
                     <div class="form-group">
                         <label for="inputPaket" class="form-label">Paket</label>
-                        <input type="text" class="form-control" id="editPaket" name="paket" required>
+                        <textarea name="paket" id="editPaket" required></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -141,6 +160,12 @@
 </div>
 
 <script>
+    $(document).ready(function() {
+        $('.summernote').summernote({
+            height: 200,
+            tabsize: 2
+        });
+    });
     function editVendor(id){
         $.ajax({
             url: "{{ url('/admin/vendor/detail') }}/"+id,
@@ -153,7 +178,9 @@
                 $('#editNama').val(response.nama_vendor);
                 $('#editAlamat').val(response.alamat);
                 $('#editTelp').val(response.no_telp);
-                $('#editPaket').val(response.paket);
+                $('#editPaket').summernote('code', response.paket);
+                $("#editKategori option").removeAttr('selected');
+                $(`#editKategori option[value='${response.id_kategori}']`).attr('selected',true);
                 $('#editId').val(response.id);
                 $('#editVendor').modal('show');
                 $('#btn-edit'+id).html('Edit').attr('disabled',false);

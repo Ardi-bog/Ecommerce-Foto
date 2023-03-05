@@ -24,6 +24,7 @@
     <link href="{{ asset('/') }}assets-admin/plugins/pace/pace.css" rel="stylesheet">
     <link href="{{ asset('/') }}assets-admin/plugins/datatables/datatables.min.css" rel="stylesheet">
     <link href="{{ asset('/') }}assets-admin/plugins/select2/css/select2.min.css" rel="stylesheet">
+    <link href="{{ asset('/') }}assets-admin/plugins/summernote/summernote-lite.min.css" rel="stylesheet">
 
     
     <!-- Theme Styles -->
@@ -110,7 +111,7 @@
     <script src="{{ asset('/') }}assets-admin/plugins/datatables/datatables.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- <script src="{{ asset('/') }}assets-admin/plugins/select2/js/select2.full.min.js"></script> -->
-    <script src="{{ asset('/') }}assets-admin/js/pages/select2.js"></script>
+    <script src="{{ asset('/') }}assets-admin/plugins/summernote/summernote-lite.min.js"></script>
     <script>
         $(document).ready(function() {
             $('.datatables').DataTable();
