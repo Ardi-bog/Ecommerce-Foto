@@ -41,7 +41,7 @@
           </div>
           <div class="ht-right">
               <a href="#" class="login-panel"><i class="fa fa-user"></i>Login</a>
-              <div class="lan-selector">
+              <div class="lan-selector" hidden>
                   <select class="language_drop" name="countries" id="countries" style="width:300px">
                       <option value='yt' data-image="assets/img/flag-1.jpg" data-imagecss="flag yt"
                           data-title="English">English</option>
@@ -93,7 +93,7 @@
                   </ul>
               </div>
           </div>
-          <nav class="nav-menu mobile-menu">
+          <nav class="nav-menu mobile-menu" hidden>
               <ul>
                   <li><a href="/blog">Blog</a></li>
                   <li><a href="#">Contact</a></li>

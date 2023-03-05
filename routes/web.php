@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +19,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/blog', [BlogController::class, 'index']);
+
+
+//Admin
+Route::get('/admin/login', [AdminController::class, 'login'])->name('login')->middleware('guest:admin');
+Route::post('/admin/doLogin', [AdminController::class, 'doLogin'])->middleware('guest:admin');
+Route::get('/admin/logout', [AdminController::class, 'logout']);
+
+Route::get('/admin', [AdminController::class, 'index'])->name('dashboard');
+
+Route::get('/admin/kategori', [AdminController::class, 'kategori'])->name('kategori');
+Route::post('/admin/kategori/tambah', [AdminController::class, 'kategori']);
+Route::post('/admin/kategori/edit', [AdminController::class, 'kategori']);
+
+Route::get('/admin/vendor', [AdminController::class, 'index'])->name('vendor');
+Route::get('/admin/pesanan', [AdminController::class, 'index'])->name('pesanan');
