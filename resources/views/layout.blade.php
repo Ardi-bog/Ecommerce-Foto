@@ -4,26 +4,26 @@
 <!-- Google Font -->
 <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
  <!-- Css Styles -->
- <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
- <link rel="stylesheet" href="assets/css/font-awesome.min.css" type="text/css">
- <link rel="stylesheet" href="assets/css/themify-icons.css" type="text/css">
- <link rel="stylesheet" href="assets/css/elegant-icons.css" type="text/css">
- <link rel="stylesheet" href="assets/css/owl.carousel.min.css" type="text/css">
- <link rel="stylesheet" href="assets/css/nice-select.css" type="text/css">
- <link rel="stylesheet" href="assets/css/jquery-ui.min.css" type="text/css">
- <link rel="stylesheet" href="assets/css/slicknav.min.css" type="text/css">
- <link rel="stylesheet" href="assets/css/style.css" type="text/css">
+ <link rel="stylesheet" href="{{ asset('/') }}assets/css/bootstrap.min.css" type="text/css">
+ <link rel="stylesheet" href="{{ asset('/') }}assets/css/font-awesome.min.css" type="text/css">
+ <link rel="stylesheet" href="{{ asset('/') }}assets/css/themify-icons.css" type="text/css">
+ <link rel="stylesheet" href="{{ asset('/') }}assets/css/elegant-icons.css" type="text/css">
+ <link rel="stylesheet" href="{{ asset('/') }}assets/css/owl.carousel.min.css" type="text/css">
+ <link rel="stylesheet" href="{{ asset('/') }}assets/css/nice-select.css" type="text/css">
+ <link rel="stylesheet" href="{{ asset('/') }}assets/css/jquery-ui.min.css" type="text/css">
+ <link rel="stylesheet" href="{{ asset('/') }}assets/css/slicknav.min.css" type="text/css">
+ <link rel="stylesheet" href="{{ asset('/') }}assets/css/style.css" type="text/css">
  <!-- Js Plugins -->
- <script src="assets/js/jquery-3.3.1.min.js"></script>
- <script src="assets/js/bootstrap.min.js"></script>
- <script src="assets/js/jquery-ui.min.js"></script>
- <script src="assets/js/jquery.countdown.min.js"></script>
- <script src="assets/js/jquery.nice-select.min.js"></script>
- <script src="assets/js/jquery.zoom.min.js"></script>
- <script src="assets/js/jquery.dd.min.js"></script>
- <script src="assets/js/jquery.slicknav.js"></script>
- <script src="assets/js/owl.carousel.min.js"></script>
- <script src="assets/js/main.js"></script>
+ <script src="{{ asset('/') }}assets/js/jquery-3.3.1.min.js"></script>
+ <script src="{{ asset('/') }}assets/js/bootstrap.min.js"></script>
+ <script src="{{ asset('/') }}assets/js/jquery-ui.min.js"></script>
+ <script src="{{ asset('/') }}assets/js/jquery.countdown.min.js"></script>
+ <script src="{{ asset('/') }}assets/js/jquery.nice-select.min.js"></script>
+ <script src="{{ asset('/') }}assets/js/jquery.zoom.min.js"></script>
+ <script src="{{ asset('/') }}assets/js/jquery.dd.min.js"></script>
+ <script src="{{ asset('/') }}assets/js/jquery.slicknav.js"></script>
+ <script src="{{ asset('/') }}assets/js/owl.carousel.min.js"></script>
+ <script src="{{ asset('/') }}assets/js/main.js"></script>
 </style>
 <body>
 @include('header')

@@ -4,6 +4,8 @@
 
 @php
     $kategori = DB::table('kategori')->where(['hapus' => 0])->get();
+    $vendor = DB::table('vendor')->where(['hapus' => 0])->get();
+
 @endphp
 <section class="hero-section">
   <div class="hero-items owl-carousel">
@@ -60,10 +62,10 @@
                   </ul>
               </div>
               <div class="product-slider owl-carousel">
+              @foreach ($vendor as $data)
                   <div class="product-item">
                       <div class="pi-pic">
-                          <img src="assets/img/women-1.jpg" alt="" />
-                          <div class="sale">Sale</div>
+                          <img src="{{ asset('foto_vendor/'.$data->foto) }}" alt="" />
                           <div class="icon">
                               <i class="icon_heart_alt"></i>
                           </div>
@@ -74,82 +76,17 @@
                           </ul>
                       </div>
                       <div class="pi-text">
-                          <div class="catagory-name">Coat</div>
+                          <div class="catagory-name"></div>
                           <a href="#">
-                              <h5>Pure Pineapple</h5>
+                              <h5>{{$data->nama_vendor}}</h5>
                           </a>
                           <div class="product-price">
-                              $14.00
-                              <span>$35.00</span>
                           </div>
                       </div>
                   </div>
-                  <div class="product-item">
-                      <div class="pi-pic">
-                          <img src="assets/img/women-2.jpg" alt="" />
-                          <div class="icon">
-                              <i class="icon_heart_alt"></i>
-                          </div>
-                          <ul>
-                              <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                              <li class="quick-view"><a href="#">+ Quick View</a></li>
-                              <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                          </ul>
-                      </div>
-                      <div class="pi-text">
-                          <div class="catagory-name">Shoes</div>
-                          <a href="#">
-                              <h5>Guangzhou sweater</h5>
-                          </a>
-                          <div class="product-price">
-                              $13.00
-                          </div>
-                      </div>
-                  </div>
-                  <div class="product-item">
-                      <div class="pi-pic">
-                          <img src="assets/img/women-3.jpg" alt="" />
-                          <div class="icon">
-                              <i class="icon_heart_alt"></i>
-                          </div>
-                          <ul>
-                              <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                              <li class="quick-view"><a href="#">+ Quick View</a></li>
-                              <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                          </ul>
-                      </div>
-                      <div class="pi-text">
-                          <div class="catagory-name">Towel</div>
-                          <a href="#">
-                              <h5>Pure Pineapple</h5>
-                          </a>
-                          <div class="product-price">
-                              $34.00
-                          </div>
-                      </div>
-                  </div>
-                  <div class="product-item">
-                      <div class="pi-pic">
-                          <img src="assets/img/women-4.jpg" alt="" />
-                          <div class="icon">
-                              <i class="icon_heart_alt"></i>
-                          </div>
-                          <ul>
-                              <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                              <li class="quick-view"><a href="#">+ Quick View</a></li>
-                              <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                          </ul>
-                      </div>
-                      <div class="pi-text">
-                          <div class="catagory-name">Towel</div>
-                          <a href="#">
-                              <h5>Converse Shoes</h5>
-                          </a>
-                          <div class="product-price">
-                              $34.00
-                          </div>
-                      </div>
-                  </div>
+                  @endforeach
+                  
+                  
               </div>
           </div>
       </div>

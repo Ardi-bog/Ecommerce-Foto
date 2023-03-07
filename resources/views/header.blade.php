@@ -1,4 +1,8 @@
+@php
+    $kategori = DB::table('kategori')->where(['hapus' => 0])->get();
+    $vendor = DB::table('vendor')->where(['hapus' => 0])->get();
 
+@endphp
 <header class="header-section">
     <div class="header-top">
         <div class="container">
@@ -58,10 +62,13 @@
                     <i class="ti-menu"></i>
                     <span>All Categories</span>
                     <ul class="depart-hover">
-                        @foreach ($kategori as $item)
-                        <!-- <li class="active"><a href="#">Wedding</a></li> -->
-                        <li><a href="#">{{$item->nama_kategori}}</a></li>
+                    @if(!empty($kategori))
+                        @foreach($kategori as $item)
+                            <li><a href="{{url('/blog/kategori/'.$item->id)}}">{{$item->nama_kategori}}</a></li>
                         @endforeach
+                        @endif
+
+
                     </ul>
                 </div>
             </div>

@@ -13,9 +13,17 @@ class UserController extends Controller
     function index(){
         return view('welcome');
     }
+    public function kategori($id)
+    {
+    $kategori = DB::table('kategori')->where('id', $id)->first();
+    return view('kategori', compact('kategori'));
+    }
+
     function login(){
         return view('login');
     }
+
+
     function doLogin(Request $request){
         $credentials = $request->only('email', 'password');
         if (Auth::guard('user')->attempt($credentials)) {
