@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VendorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,3 +56,7 @@ Route::get('/admin/profile', [AdminController::class, 'profile']);
 Route::post('/admin/editProfile', [AdminController::class, 'profileEdit']);
 
 Route::get('/admin/pesanan', [AdminController::class, 'pesanan'])->name('pesanan');
+
+
+//vendor 
+Route::get('/vendor',[VendorController::class,'index']);
