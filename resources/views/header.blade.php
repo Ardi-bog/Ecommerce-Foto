@@ -17,13 +17,13 @@
                 </div>
             </div>
             @if(!Auth::guard('user')->check())
-            <div class="ht-right">
+            <div class="ht-right" hidden>
                 <a href="{{ url('/register') }}" class="login-panel" style="border:0 !important;"><i class="fa fa-user"></i>Register</a>
                 <a href="{{ url('/login') }}" class="login-panel" style="border:0 !important;"><i class="fa fa-user"></i>Login</a>
             </div>
             @else
 
-            <div class="ht-right">
+            <div class="ht-right" hidden>
                 <a href="{{ url('/logout') }}" class="login-panel" style="border:0 !important;">Logout</a>
                 <a href="#" class="login-panel" style="border:0 !important;"><i class="fa fa-user"></i>{{ Auth::guard('user')->user()->name }}</a>
             </div>
