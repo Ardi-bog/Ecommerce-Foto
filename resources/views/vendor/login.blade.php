@@ -12,7 +12,7 @@
     <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     
     <!-- Title -->
-    <title>ADMIN</title>
+    <title>VENDOR</title>
 
     <!-- Styles -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -52,7 +52,7 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
-                        <center><h2>ADMIN</h2></center>
+                        <center><h2>VENDOR</h2></center>
                         <form action="./doLogin" method="POST">
                             @csrf
                             <div class="row">

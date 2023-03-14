@@ -32,7 +32,7 @@ Route::get('/logout', [UserController::class, 'logout']);
 
 
 //Admin
-Route::get('/admin/login', [AdminController::class, 'login'])->name('login')->middleware('guest:admin');
+Route::get('/admin/login', [AdminController::class, 'login'])->name('login-admin')->middleware('guest:admin');
 Route::post('/admin/doLogin', [AdminController::class, 'doLogin'])->middleware('guest:admin');
 Route::get('/admin/logout', [AdminController::class, 'logout']);
 
@@ -59,4 +59,7 @@ Route::get('/admin/pesanan', [AdminController::class, 'pesanan'])->name('pesanan
 
 
 //vendor 
+Route::get('/vendor/login', [VendorController::class, 'login'])->name('login-vendor')->middleware('guest:vendor');
+Route::post('/vendor/doLogin', [VendorController::class, 'doLogin'])->middleware('guest:vendor');
+Route::get('/vendor/logout', [VendorController::class, 'logout']);
 Route::get('/vendor',[VendorController::class,'index']);
