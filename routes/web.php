@@ -63,3 +63,11 @@ Route::get('/vendor/login', [VendorController::class, 'login'])->name('login-ven
 Route::post('/vendor/doLogin', [VendorController::class, 'doLogin'])->middleware('guest:vendor');
 Route::get('/vendor/logout', [VendorController::class, 'logout']);
 Route::get('/vendor',[VendorController::class,'index']);
+Route::get('/vendor/detail',[VendorController::class,'detail']);
+Route::post('/vendor/ubahDetail',[VendorController::class,'ubahDetail']);
+Route::post('/vendor/uploadSlider',[VendorController::class,'uploadSlider']);
+Route::delete('/vendor/hapusSlider',[VendorController::class,'hapusSlider']);
+
+
+Route::get('/vendor/ubah-password',[VendorController::class,'ubahPassword']);
+Route::post('/vendor/doUbahPassword',[VendorController::class,'doUbahPassword']);

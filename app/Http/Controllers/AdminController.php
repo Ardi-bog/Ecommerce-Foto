@@ -57,7 +57,7 @@ class AdminController extends Controller
         if ($insert) {
             return redirect('/admin/kategori')->with(['status' => 1 , 'msg' => 'Berhasil Menambahkan Kategori']);
         }else{
-            return redirect('/admin/kategori')->with(['status' => 0 , 'msg' => 'Gagal Menambahkan Kategori']);
+            return redirect('/admin/kategori')->with(['status' => 2 , 'msg' => 'Gagal Menambahkan Kategori']);
         }
     }
     function kategoriDetail($id){
@@ -75,7 +75,7 @@ class AdminController extends Controller
         if ($update) {
             return redirect('/admin/kategori')->with(['status' => 1 , 'msg' => 'Berhasil Mengubah Kategori']);
         }else{
-            return redirect('/admin/kategori')->with(['status' => 0 , 'msg' => 'Gagal Mengubah Kategori']);
+            return redirect('/admin/kategori')->with(['status' => 2 , 'msg' => 'Gagal Mengubah Kategori']);
         }
     }
     function kategoriHapus(Request $request){
@@ -87,7 +87,7 @@ class AdminController extends Controller
         if ($update) {
             return redirect('/admin/kategori')->with(['status' => 1 , 'msg' => 'Berhasil Menghapus Kategori']);
         }else{
-            return redirect('/admin/kategori')->with(['status' => 0 , 'msg' => 'Gagal Menghapus Kategori']);
+            return redirect('/admin/kategori')->with(['status' => 2 , 'msg' => 'Gagal Menghapus Kategori']);
         }
     }
 
@@ -102,12 +102,24 @@ class AdminController extends Controller
     }
 
     function vendorInsert(Request $request){
+        $username = $request->username;
+        $password = Hash::make($request->password);
         $nama_vendor = $request->nama_vendor;
         $alamat = $request->alamat;
         $no_telp = $request->no_telp;
         $foto = $request->foto;
         $paket = $request->paket;
         $id_kategori = $request->id_kategori;
+        $harga = $request->harga;
+        $asal = $request->asal;
+        $facebook = $request->facebook;
+        $instagram = $request->instagram;
+
+        $cekUsername = DB::table('vendor')->where(['username' => $username])->first();
+        if($cekUsername){
+            return redirect('/admin/vendor')->with(['status' => 2 , 'msg' => 'Username Sudah Digunakan']);
+        }
+
 
         //upload file foto jpg
         $validator = Validator::make($request->all(), [
@@ -120,14 +132,21 @@ class AdminController extends Controller
         if($file->move($tujuan_upload,$nama_file)){
             $foto = $nama_file;
         }else{
-            return redirect('/admin/vendor')->with(['status' => 0 , 'msg' => 'Pastikan Inputan Sesuai']);
+            return redirect('/admin/vendor')->with(['status' => 2 , 'msg' => 'Pastikan Inputan Sesuai']);
         }
 
 
         $insert = DB::table('vendor')->insert([
+            'username' => $username,
+            'password' => $password,
+            'harga' => $harga,
+            'asal' => $asal,
             'nama_vendor' => $nama_vendor,
             'alamat' => $alamat,
             'no_telp' => $no_telp,
+            'facebook' => $facebook,
+            'instagram' => $instagram,
+            'jenis_vendor' => $request->jenis_vendor,
             'foto' => $foto,
             'paket' => $paket,
             'id_kategori' => $id_kategori,
@@ -138,7 +157,7 @@ class AdminController extends Controller
         if ($insert) {
             return redirect('/admin/vendor')->with(['status' => 1 , 'msg' => 'Berhasil Menambahkan Vendor']);
         }else{
-            return redirect('/admin/vendor')->with(['status' => 0 , 'msg' => 'Gagal Menambahkan Vendor']);
+            return redirect('/admin/vendor')->with(['status' => 2 , 'msg' => 'Gagal Menambahkan Vendor']);
         }
     }
     function vendorDetail($id){
@@ -148,19 +167,17 @@ class AdminController extends Controller
     }
     function vendorEdit(Request $request){
         $id = $request->id;
-        $nama_vendor = $request->nama_vendor;
-        $alamat = $request->alamat;
-        $no_telp = $request->no_telp;
-        $foto = $request->foto;
-        $paket = $request->paket;
-        $id_kategori = $request->id_kategori;
-        $foto = '';
         $data_update = [
-            'nama_vendor' => $nama_vendor,
-            'alamat' => $alamat,
-            'no_telp' => $no_telp,
-            'paket' => $paket,
-            'id_kategori' => $id_kategori,
+            'nama_vendor' => $request->nama_vendor,
+            'alamat' => $request->alamat,
+            'no_telp' => $request->no_telp,
+            'paket' => $request->paket,
+            'id_kategori' => $request->id_kategori,
+            'asal' => $request->asal,
+            'harga' => $request->harga,
+            'facebook' => $request->facebook,
+            'instagram' => $request->instagram,
+            'jenis_vendor' => $request->jenis_vendor,
             'updated_at' => date('Y-m-d H:i:s'),
         ];
         if ($request->hasFile('foto')) {
@@ -180,7 +197,7 @@ class AdminController extends Controller
         if ($update) {
             return redirect('/admin/vendor')->with(['status' => 1 , 'msg' => 'Berhasil Mengubah Vendor']);
         }else{
-            return redirect('/admin/vendor')->with(['status' => 0 , 'msg' => 'Gagal Mengubah Vendor']);
+            return redirect('/admin/vendor')->with(['status' => 2 , 'msg' => 'Gagal Mengubah Vendor']);
         }
     }
     function vendorHapus(Request $request){
@@ -192,7 +209,7 @@ class AdminController extends Controller
         if ($update) {
             return redirect('/admin/vendor')->with(['status' => 1 , 'msg' => 'Berhasil Menghapus Vendor']);
         }else{
-            return redirect('/admin/vendor')->with(['status' => 0 , 'msg' => 'Gagal Menghapus Vendor']);
+            return redirect('/admin/vendor')->with(['status' => 2 , 'msg' => 'Gagal Menghapus Vendor']);
         }
     }
 
@@ -222,7 +239,7 @@ class AdminController extends Controller
         if ($update) {
             return redirect('/admin/profile')->with(['status' => 1 , 'msg' => 'Berhasil Mengubah Profile']);
         }else{
-            return redirect('/admin/profile')->with(['status' => 0 , 'msg' => 'Gagal Mengubah Profile']);
+            return redirect('/admin/profile')->with(['status' => 2 , 'msg' => 'Gagal Mengubah Profile']);
         }
     }
 

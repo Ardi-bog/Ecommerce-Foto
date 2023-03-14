@@ -58,7 +58,7 @@
 </div>
 <!-- Modal -->
 <div class="modal fade" id="tambahVendor" tabindex="-1" aria-labelledby="tambahVendorLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="tambahVendorLabel">Tambah</h5>
@@ -67,35 +67,72 @@
             <form action="{{ url('/admin/vendor/tambah') }}" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     @csrf
-                    <div class="form-group">
-                        <label for="inputNama" class="form-label">Nama</label>
-                        <input type="text" class="form-control" id="inputNama" name="nama_vendor" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputKategori" class="form-label">Kategori</label>
-                        <select name="id_kategori" id="inputKategori" class="form-control" required>
-                            <option value="">Pilih Kategori</option>
-                            @foreach ($kategori as $item)
-                            <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputAlamat" class="form-label">Alamat</label>
-                        <input type="text" class="form-control" id="inputAlamat" name="alamat" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputTelp" class="form-label">No Telp</label>
-                        <input type="text" class="form-control" id="inputTelp" name="no_telp" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputFoto" class="form-label">Foto</label>
-                        <input type="file" class="form-control" accept="image/jpg,image/jpeg,image/png" id="inputFoto" name="foto" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPaket" class="form-label">Paket</label>
-                        <textarea name="paket" class="summernote" id="inputPaket" required></textarea>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="inputUsername" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="inputUsername" name="username" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputNama" class="form-label">Nama</label>
+                                <input type="text" class="form-control" id="inputNama" name="nama_vendor" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputKategori" class="form-label">Kategori</label>
+                                <select name="id_kategori" id="inputKategori" class="form-control" required>
+                                    <option value="">Pilih Kategori</option>
+                                    @foreach ($kategori as $item)
+                                    <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputAlamat" class="form-label">Alamat</label>
+                                <input type="text" class="form-control" id="inputAlamat" name="alamat" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputFb" class="form-label">Facebook</label>
+                                <input type="text" class="form-control" id="inputFb" name="facebook" >
+                            </div>
+                            <div class="form-group">
+                                <label for="inputJenis" class="form-label">Jenis</label>
+                                <select name="jenis_vendor" class="form-control" id="inputJenis">
+                                    <option value="1">Free</option>
+                                    <option value="2">Premium</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="inputPassword" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="inputPassword" name="password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputAsal" class="form-label">Asal</label>
+                                <input type="text" class="form-control" id="inputAsal" name="asal" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputHarga" class="form-label">Harga</label>
+                                <input type="text" class="form-control" id="inputHarga" name="harga" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputTelp" class="form-label">Whatsapp</label>
+                                <input type="text" class="form-control" id="inputTelp" name="no_telp" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputIg" class="form-label">Instagram</label>
+                                <input type="text" class="form-control" id="inputIg" name="instagram" >
+                            </div>
+                            <div class="form-group">
+                                <label for="inputFoto" class="form-label">Foto</label>
+                                <input type="file" class="form-control" accept="image/jpg,image/jpeg,image/png" id="inputFoto" name="foto" required>
+                            </div>
+                        </div>
 
+                        <div class="form-group">
+                            <label for="inputPaket" class="form-label">Deskripsi</label>
+                            <textarea name="paket" class="summernote" id="inputPaket" required></textarea>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -109,7 +146,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="editVendor" tabindex="-1" aria-labelledby="editVendorLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editVendorLabel">Edit</h5>
@@ -118,38 +155,70 @@
             <form id="formEdit" action="{{ url('/admin/vendor/edit') }}" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     @csrf
-                    <div class="form-group">
-                        <label for="editNama" class="form-label">Nama</label>
-                        <input type="text" class="form-control" id="editNama" name="nama_vendor" required>
-                        <input type="hidden" class="form-control" id="editId" name="id" required>
-                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="hidden" class="form-control" id="editId" name="id" required>
+                            <div class="form-group">
+                                <label for="editUsername" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="editUsername" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="editNama" class="form-label">Nama</label>
+                                <input type="text" class="form-control" id="editNama" name="nama_vendor" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editKategori" class="form-label">Kategori</label>
+                                <select name="id_kategori" id="editKategori" class="form-control" required>
+                                    <option value="">Pilih Kategori</option>
+                                    @foreach ($kategori as $item)
+                                    <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="editAlamat" class="form-label">Alamat</label>
+                                <input type="text" class="form-control" id="editAlamat" name="alamat" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editFb" class="form-label">Facebook</label>
+                                <input type="text" class="form-control" id="editFb" name="facebook" >
+                            </div>
+                            <div class="form-group">
+                                <label for="editJenis" class="form-label">Jenis</label>
+                                <select name="jenis_vendor" class="form-control" id="editJenis">
+                                    <option value="1">Free</option>
+                                    <option value="2">Premium</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="editAsal" class="form-label">Asal</label>
+                                <input type="text" class="form-control" id="editAsal" name="asal" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editHarga" class="form-label">Harga</label>
+                                <input type="text" class="form-control" id="editHarga" name="harga" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editTelp" class="form-label">Whatsapp</label>
+                                <input type="text" class="form-control" id="editTelp" name="no_telp" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editIg" class="form-label">Instagram</label>
+                                <input type="text" class="form-control" id="editIg" name="instagram" >
+                            </div>
+                            <div class="form-group">
+                                <label for="editFoto" class="form-label">Foto</label>
+                                <input type="file" class="form-control" accept="image/jpg,image/jpeg,image/png" id="editFoto" name="foto" >
+                                <a href="" id="lihatFoto" target="_blank" class="btn btn-succes">Lihat Foto</a>
+                            </div>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="editKategori" class="form-label">Kategori</label>
-                        <select id="editKategori"  name="id_kategori" class="form-control" required>
-                            <option value="">Pilih Kategori</option>
-                            @foreach ($kategori as $item)
-                            <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputAlamat" class="form-label">Alamat</label>
-                        <input type="text" class="form-control" id="editAlamat" name="alamat" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputTelp" class="form-label">No Telp</label>
-                        <input type="text" class="form-control" id="editTelp" name="no_telp" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputFoto" class="form-label">Foto</label>
-                        <input type="file" class="form-control" id="editFoto" name="foto">
-                        <a href="" id="lihatFoto" target="_blank" class="btn btn-succes">Lihat Foto</a>
-
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPaket" class="form-label">Paket</label>
-                        <textarea name="paket" id="editPaket" required></textarea>
+                        <div class="form-group">
+                            <label for="inputPaket" class="form-label">Deskripsi</label>
+                            <textarea name="paket" class="summernote" id="editPaket" required></textarea>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -179,12 +248,19 @@
                 $('#btn-edit'+id).html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...`).attr('disabled',true);
             },
             success: function(response){
+                $('#editUsername').val(response.username);
+                $('#editHarga').val(response.harga);
+                $('#editAsal').val(response.asal);
                 $('#editNama').val(response.nama_vendor);
                 $('#editAlamat').val(response.alamat);
                 $('#editTelp').val(response.no_telp);
+                $('#editFb').val(response.facebook);
+                $('#editIg').val(response.instagram);
                 $('#editPaket').summernote('code', response.paket);
                 $("#editKategori option").removeAttr('selected');
                 $(`#editKategori option[value='${response.id_kategori}']`).attr('selected',true);
+                $("#editJenis option").removeAttr('selected');
+                $(`#editJenis option[value='${response.jenis_vendor}']`).attr('selected',true);
                 $('#lihatFoto').attr('href', "{{ url('/foto_vendor') }}/"+response.foto);
                 $('#editId').val(response.id);
                 $('#editVendor').modal('show');
