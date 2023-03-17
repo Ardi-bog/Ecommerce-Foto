@@ -18,8 +18,10 @@ use App\Http\Controllers\VendorController;
 */
 
 Route::get('/', [UserController::class, 'index']);
+Route::get('/detail/{id}', [UserController::class, 'detail']);
+Route::get('/porto/{id}', [UserController::class, 'porto']);
 Route::get('/blog', [BlogController::class, 'index']);
-Route::get('/blog/kategori/{id}', [UserController::class, 'kategori']);
+Route::get('/kategori/{id}', [UserController::class, 'kategori']);
 Route::get('/login', [UserController::class, 'login'])->middleware('guest:user');
 Route::post('/doLogin', [UserController::class, 'doLogin'])->middleware('guest:user');
 Route::get('/register', [UserController::class, 'register'])->middleware('guest:user');
@@ -60,6 +62,8 @@ Route::get('/admin/pesanan', [AdminController::class, 'pesanan'])->name('pesanan
 
 //vendor 
 Route::get('/vendor/login', [VendorController::class, 'login'])->name('login-vendor')->middleware('guest:vendor');
+Route::get('/vendor/register', [VendorController::class, 'register'])->middleware('guest:vendor');
+Route::post('/vendor/doRegister', [VendorController::class, 'doRegister'])->middleware('guest:vendor');
 Route::post('/vendor/doLogin', [VendorController::class, 'doLogin'])->middleware('guest:vendor');
 Route::get('/vendor/logout', [VendorController::class, 'logout']);
 Route::get('/vendor',[VendorController::class,'index']);

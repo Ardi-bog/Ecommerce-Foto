@@ -13,9 +13,9 @@ use App\Models\Kategori;
 
 class VendorController extends Controller
 {
-    //
+    
     function __construct(){
-        $this->middleware('auth:vendor')->except(['login', 'doLogin']);
+        $this->middleware('auth:vendor')->except(['login', 'doLogin','register','doRegister']);
     }
     //login logout
     function login(){
@@ -34,6 +34,25 @@ class VendorController extends Controller
             return redirect('/vendor/login')->with(['status' => 1 , 'msg' => 'Gagal Login']);
         }
     }
+    function register(){
+        return view('vendor.register');
+    }
+    function doRegister(Request $request){
+        //auth vendor
+        $data = array(
+            'nama_vendor' => $request->nama_vendor,
+            'username' => $request->username,
+            'password' => Hash::make($request->password),
+            'like' => $request->like,
+        );
+        $cek = DB::table('vendor')->where(['username' => $request->username])->count();
+        if($cek > 0){
+            return redirect("register")->withError('Username Sudah Terdaftar');
+        }
+        $user = DB::table('vendor')->insert($data);
+        return redirect("register")->withSuccess('Berhasil Daftar');
+    }
+    
     function logout(){
         Auth::logout();
         return redirect('/vendor');
@@ -83,10 +102,10 @@ class VendorController extends Controller
         $file = $request->file('slider');
         $slider_count = Slider::where('id_vendor', Auth::guard('vendor')->user()->id)->count();
         $vendor = Vendor::find(Auth::guard('vendor')->user()->id);
-        if($vendor->jenis_vendor == 1 && $slider_count == 2){ //jika vendor free
-            return redirect('/vendor/detail')->with(['status' => 2 , 'msg' => 'Slider Maksimal 2']);
-        }else if($vendor->jenis_vendor == 2 && $slider_count == 6){//jika vendor premium
-            return redirect('/vendor/detail')->with(['status' => 2 , 'msg' => 'Slider Maksimal 6']);
+        if($vendor->jenis_vendor == 1 && $slider_count == 4){ //jika vendor free
+            return redirect('/vendor/detail')->with(['status' => 2 , 'msg' => 'Slider Maksimal 4']);
+        }else if($vendor->jenis_vendor == 2 && $slider_count == 8){//jika vendor premium
+            return redirect('/vendor/detail')->with(['status' => 2 , 'msg' => 'Slider Maksimal 8']);
         }
     
         if($file){

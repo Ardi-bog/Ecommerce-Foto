@@ -22,6 +22,14 @@ class UserController extends Controller
     function login(){
         return view('login');
     }
+    function porto($id){
+        $kategori = DB::table('vendor')->where('id', $id)->first();
+        return view('porto');
+    }
+    function detail($id){
+        $vendor = DB::table('vendor')->where('id', $id)->first();
+        return view('detail', compact('vendor'));
+    }
 
 
     function doLogin(Request $request){

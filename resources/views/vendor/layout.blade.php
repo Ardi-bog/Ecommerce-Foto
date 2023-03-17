@@ -76,7 +76,7 @@
                                             </div>
                                         </div>
                                     @else
-                                        <div class="btn btn-success">Premum</div>
+                                        <div class="btn btn-success">Premium</div>
                                     @endif
                                 </li>
                             </ul>
@@ -101,7 +101,7 @@
                             <a href="{{ url('/vendor/ubah-password') }}" class="{{ $url == 'ubah-password' ? 'active' : '' }}">Ubah Password</a>
                         </li>
                         <li >
-                            <a href="index.html" >Logout</a>
+                            <a href="{{ url('/vendor/logout') }}" >Logout</a>
                         </li>
                     </ul>
                 </div>

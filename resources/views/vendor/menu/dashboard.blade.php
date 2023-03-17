@@ -93,6 +93,7 @@
             <div class="modal-body">
                 Harap kontak admin untuk melakukan upgrade.
             </div>
+            <button type="button" class="btn btn-primary"style="border-radius : 3%;">Chat</button>
         </div>
     </div>
 </div>

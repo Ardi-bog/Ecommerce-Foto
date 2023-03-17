@@ -16,18 +16,12 @@
                     +6282231375373
                 </div>
             </div>
-            @if(!Auth::guard('user')->check())
-            <div class="ht-right" hidden>
-                <a href="{{ url('/register') }}" class="login-panel" style="border:0 !important;"><i class="fa fa-user"></i>Register</a>
-                <a href="{{ url('/login') }}" class="login-panel" style="border:0 !important;"><i class="fa fa-user"></i>Login</a>
-            </div>
-            @else
+            <div class="ht-right" >
+    <a href="{{ route('login-vendor') }}" class="login-panel" style="border:0 !important;"><i class="fa fa-user"></i>Login</a>
+    <a href="{{ route('register-vendor') }}" class="login-panel" style="border:0 !important;"><i class="fa fa-user"></i>Register</a>
+</div>
 
-            <div class="ht-right" hidden>
-                <a href="{{ url('/logout') }}" class="login-panel" style="border:0 !important;">Logout</a>
-                <a href="#" class="login-panel" style="border:0 !important;"><i class="fa fa-user"></i>{{ Auth::guard('user')->user()->name }}</a>
-            </div>
-            @endif
+            
         </div>
     </div>
     @php
@@ -39,7 +33,7 @@
             <div class="row">
                 <div class="col-lg-2 col-md-2">
                     <div class="logo">
-                        <a href="#">
+                        <a href="{{ url('/') }}">
                             FOTOMEDIA
                         </a>
                     </div>
@@ -64,7 +58,7 @@
                     <ul class="depart-hover">
                     @if(!empty($kategori))
                         @foreach($kategori as $item)
-                            <li><a href="{{url('/blog/kategori/'.$item->id)}}">{{$item->nama_kategori}}</a></li>
+                            <li><a href="{{url('/kategori/'.$item->id)}}">{{$item->nama_kategori}}</a></li>
                         @endforeach
                         @endif
 
