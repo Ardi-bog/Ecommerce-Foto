@@ -18,6 +18,12 @@ class UserController extends Controller
     $kategori = DB::table('kategori')->where('id', $id)->first();
     return view('kategori', compact('kategori'));
     }
+    public function search(){
+        $cari = addslashes($_GET['cari']);
+        $vendor = DB::table('vendor')->where('nama_vendor', 'like', "%".$cari."%")->get();
+        return view('search', compact('vendor'));
+    }
+
 
     function login(){
         return view('login');

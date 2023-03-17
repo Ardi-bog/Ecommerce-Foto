@@ -38,13 +38,15 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-7 col-md-7">
-                    <div class="advanced-search">
-                        <div class="input-group">
-                            <input type="text" placeholder="What do you need?" />
-                            <button type="button"><i class="ti-search"></i></button>
+                <div class="col-lg-5 col-md-5">
+                    <form action="{{ url('/search') }}">
+                        <div class="advanced-search">
+                            <div class="input-group" style="max-width:100% !important;">
+                                <input type="text" name="cari" placeholder="What do you need?" value="{{ $_GET['cari'] ?? '' }}"/>
+                                <button type="submit"><i class="ti-search"></i></button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
