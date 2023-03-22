@@ -14,51 +14,32 @@
 @endphp
 
 <section class="women-banner spad">
+  <div class="filter-control">
+    <ul>
+      <li class="active">{{$kategori->nama_kategori}}</li>
+    </ul>
+  </div>
   <div class="container-fluid">
-      <div class="row">
-          <div class="col-lg-3">
-              <div class="product-large set-bg" data-setbg="{{asset('/')}}assets/img/women-large.jpg">
-                  <h2>{{$kategori->nama_kategori}}</h2>
-                  <a href="#">Discover More</a>
+    <div class="row">
+      @foreach ($vendor as $data)
+        <div class="col-lg-4">
+          <div class="card p-3" style="height: 400px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div style="height: 150px; overflow: hidden;">
+              <img src="{{ asset('foto_vendor/'.$data->foto) }}" style="object-fit: cover; height: 100%;width:100%;">
+            </div>
+            <div class="d-flex justify-content-between align-items-center mt-2 mb-2">
+              <span>{{$data->nama_vendor}}</span>
+              <div class="colors">
               </div>
+            </div>
+            <p>{{ substr($data->paket, 0, 100) }}{{ strlen($data->paket) > 100 ? "..." : "" }}</p>
+            <p>{{$data->alamat}}</p>
+            <p><b>Rp.{{$data->harga}}</b></p>
+            <a href="{{url('/detail/'.$data->id)}}" class="primary-btn"style="text-align:center;">Lihat</a>
           </div>
-          <div class="col-lg-8 offset-lg-1">
-              <div class="filter-control">
-                  <ul>
-                      <!-- <li class="active">Clothings</li> -->
-                      <li class="active">{{$kategori->nama_kategori}}</li>
-                    
-                  </ul>
-              </div>
-              <div class="product-slider owl-carousel">
-              @foreach ($vendor as $data)
-                  <div class="product-item">
-                      <div class="pi-pic">
-                          <img src="{{ asset('foto_vendor/'.$data->foto) }}" alt="" />
-                          <div class="icon">
-                              <!-- <i class="icon_heart_alt"></i> -->
-                          </div>
-                          <ul>
-                              <!-- <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li> -->
-                              <li class="quick-view"><a href="{{url('/detail/'.$data->id)}}">+ Quick View</a></li>
-                              <!-- <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li> -->
-                          </ul>
-                      </div>
-                      <div class="pi-text">
-                          <div class="catagory-name"></div>
-                          <a href="#">
-                              <h5>{{$data->nama_vendor}}</h5>
-                          </a>
-                          <div class="product-price">
-                          </div>
-                      </div>
-                  </div>
-                  @endforeach
-                  
-                  
-              </div>
-          </div>
-      </div>
+        </div>
+      @endforeach
+    </div>
   </div>
 </section>
 

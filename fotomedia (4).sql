@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Mar 14, 2023 at 03:07 PM
+-- Host: 127.0.0.1
+-- Generation Time: Mar 22, 2023 at 02:21 PM
 -- Server version: 10.4.27-MariaDB
--- PHP Version: 8.0.25
+-- PHP Version: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -194,17 +194,17 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 CREATE TABLE `vendor` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `nama_vendor` varchar(255) NOT NULL,
-  `alamat` varchar(255) NOT NULL,
-  `no_telp` varchar(255) NOT NULL,
-  `foto` varchar(255) NOT NULL,
-  `paket` varchar(255) NOT NULL,
-  `id_kategori` int(11) NOT NULL,
+  `alamat` varchar(255) DEFAULT NULL,
+  `no_telp` varchar(255) DEFAULT NULL,
+  `foto` varchar(255) DEFAULT NULL,
+  `paket` text DEFAULT NULL,
+  `id_kategori` int(11) DEFAULT NULL,
   `hapus` int(11) NOT NULL DEFAULT 0,
-  `created_at` varchar(255) NOT NULL,
-  `updated_at` varchar(255) NOT NULL,
-  `username` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `like` bigint(20) DEFAULT NULL,
+  `created_at` varchar(255) DEFAULT NULL,
+  `updated_at` varchar(255) DEFAULT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `like` int(20) NOT NULL,
   `harga` varchar(255) DEFAULT NULL,
   `jenis_vendor` int(11) DEFAULT 1,
   `facebook` varchar(255) DEFAULT NULL,
@@ -217,9 +217,9 @@ CREATE TABLE `vendor` (
 --
 
 INSERT INTO `vendor` (`id`, `nama_vendor`, `alamat`, `no_telp`, `foto`, `paket`, `id_kategori`, `hapus`, `created_at`, `updated_at`, `username`, `password`, `like`, `harga`, `jenis_vendor`, `facebook`, `instagram`, `asal`) VALUES
-(1, 'Vendor', 'Jl Sawojajar 11', '0812314123', '1678780045_finn.png', 'Paket 1', 1, 0, '2023-03-05 11:52:34', '2023-03-14 07:47:25', 'vendor', '$2y$10$sWXADkUkIUVTht8E4xllgOUXQv.B0V2dj7xfAczP/0yXeKwLDDFU2', NULL, '200000', 1, 'facebook', 'instagram', 'Malang'),
-(2, 'Vendor 2', 'Jl Sawojajar 11', '0812314123', 'url.jpg', 'Paket 1', 1, 0, '2023-03-05 11:52:34', '2023-03-05 13:37:58', 'vendor2', '$2y$10$teeHH51iibdYjifStyybqu.jvAx0fnZ1rhpImgquHHUl9jBMys8Q6', NULL, NULL, 1, NULL, NULL, NULL),
-(3, 'vendor3', 'alamat', '08123412931', '1678792948_finn.png', '<p>deskripsi</p>', 1, 0, '2023-03-14 11:22:28', '2023-03-14 11:29:29', 'vendor3', '$2y$10$TmSerRz6V/vDpvXTYE3l..FqPoGlcwfozIeCVWYpCoWn7X4G2Sh..', NULL, '2000000', 2, '1facebook', '1instagram', 'malang1');
+(1, 'Vendor', 'Jl Sawojajar 11', '0812314123', '1678040605_pexels-trung-nguyen-1751682.jpg', 'Selamat datang di Foto Wedding Indonesia, kami adalah vendor foto wedding yang siap membantu Anda untuk mengabadikan momen-momen terindah dalam hidup Anda. Dengan tim fotografer dan editor yang berpengalaman, kami menjamin hasil karya yang berkualitas tinggi dan memuaskan hati klien.\r\n\r\nKami menawarkan paket layanan yang lengkap, mulai dari pengambilan gambar pre-wedding, dokumentasi acara pernikahan, hingga pembuatan album foto. Kami juga dapat menyesuaikan gaya fotografi sesuai dengan keinginan klien, baik itu gaya klasik atau modern.\r\n\r\nBerbagai testimoni dari klien kami yang puas dapat dilihat di website kami, sehingga Anda dapat melihat langsung kualitas layanan yang kami berikan. Selain itu, kami juga menawarkan harga yang kompetitif dan promo khusus untuk memudahkan Anda dalam memilih layanan yang sesuai dengan kebutuhan Anda.', 1, 0, '2023-03-05 11:52:34', '2023-03-22 13:19:00', 'vendor', '$2y$10$sWXADkUkIUVTht8E4xllgOUXQv.B0V2dj7xfAczP/0yXeKwLDDFU2', 1, '200000', 1, 'facebook', 'instagram', 'Malang'),
+(2, 'Vendor Wedding', 'Jl Sawojajar 11', '0812314123', 'wedding1.jpg', 'Selamat datang di Foto Wedding Indonesia, kami adalah vendor foto wedding yang siap membantu Anda untuk mengabadikan momen-momen terindah dalam hidup Anda. Dengan tim fotografer dan editor yang berpengalaman, kami menjamin hasil karya yang berkualitas tinggi dan memuaskan hati klien.\n\nKami menawarkan paket layanan yang lengkap, mulai dari pengambilan gambar pre-wedding, dokumentasi acara pernikahan, hingga pembuatan album foto. Kami juga dapat menyesuaikan gaya fotografi sesuai dengan keinginan klien, baik itu gaya klasik atau modern.\n\nBerbagai testimoni dari klien kami yang puas dapat dilihat di website kami, sehingga Anda dapat melihat langsung kualitas layanan yang kami berikan. Selain itu, kami juga menawarkan harga yang kompetitif dan promo khusus untuk memudahkan Anda dalam memilih layanan yang sesuai dengan kebutuhan Anda.', 1, 0, '2023-03-05 11:52:34', '2023-03-05 13:37:58', 'vendor2', '$2y$10$teeHH51iibdYjifStyybqu.jvAx0fnZ1rhpImgquHHUl9jBMys8Q6', 0, '2000000', 2, '', '', ''),
+(3, 'Vendor Wedding 1', 'alamat', '08123412931', 'wedding3.jpg', 'Selamat datang di Foto Wedding Indonesia, kami adalah vendor foto wedding yang siap membantu Anda untuk mengabadikan momen-momen terindah dalam hidup Anda. Dengan tim fotografer dan editor yang berpengalaman, kami menjamin hasil karya yang berkualitas tinggi dan memuaskan hati klien.\n\nKami menawarkan paket layanan yang lengkap, mulai dari pengambilan gambar pre-wedding, dokumentasi acara pernikahan, hingga pembuatan album foto. Kami juga dapat menyesuaikan gaya fotografi sesuai dengan keinginan klien, baik itu gaya klasik atau modern.\n\nBerbagai testimoni dari klien kami yang puas dapat dilihat di website kami, sehingga Anda dapat melihat langsung kualitas layanan yang kami berikan. Selain itu, kami juga menawarkan harga yang kompetitif dan promo khusus untuk memudahkan Anda dalam memilih layanan yang sesuai dengan kebutuhan Anda.', 1, 0, '2023-03-14 11:22:28', '2023-03-16 12:45:22', 'vendor3', '$2y$10$TmSerRz6V/vDpvXTYE3l..FqPoGlcwfozIeCVWYpCoWn7X4G2Sh..', 0, '2000000', 2, '1facebook', '1instagram', 'malang1');
 
 -- --------------------------------------------------------
 
@@ -240,7 +240,11 @@ CREATE TABLE `vendor_slider` (
 --
 
 INSERT INTO `vendor_slider` (`id`, `id_vendor`, `slider`, `updated_at`, `created_at`) VALUES
-(4, 1, '1678800059_finn.png', '2023-03-14 13:20:59', '2023-03-14 13:20:59');
+(4, 1, 'wedding1.jpg', '2023-03-14 13:20:59', '2023-03-14 13:20:59'),
+(5, 1, 'wedding3.jpg', '2023-03-15 05:15:16', '2023-03-15 05:15:16'),
+(6, 1, '1678984511_1678025075_pexels-trung-nguyen-1751682.jpg', '2023-03-16 16:35:11', '2023-03-16 16:35:11'),
+(7, 1, '1678984558_wedding.jpg', '2023-03-16 16:35:58', '2023-03-16 16:35:58'),
+(8, 18, '1679485385_ultah.jpg', '2023-03-22 11:43:05', '2023-03-22 11:43:05');
 
 --
 -- Indexes for dumped tables
@@ -361,13 +365,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `vendor`
 --
 ALTER TABLE `vendor`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `vendor_slider`
 --
 ALTER TABLE `vendor_slider`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,6 +1,7 @@
 @extends('admin.layout')
 
 @section('content')
+
 <div class="app-content">
     <div class="content-wrapper">
         <div class="container">
@@ -26,6 +27,7 @@
                                         <th>Alamat</th>
                                         <th>No Telp</th>
                                         <th>Kategori</th>
+                                        <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -37,6 +39,12 @@
                                         <td>{{ $item->alamat }}</td>
                                         <td>{{ $item->no_telp }}</td>
                                         <td>{{ $item->nama_kategori }}</td>
+                                        @if ($item->like == 0)
+                                            <td> Belum Terkonfirmasi </td>   
+                                        @else
+                                            <td>Sudah Terkonfirmasi</td>
+                                        @endif
+                                  
                                         <td>
                                             <button style='width:120px;' onclick="editVendor({{ $item->id }})" class="btn btn-primary btn-sm" id="btn-edit{{ $item->id }}">Edit</button>
                                             <form action="{{ url('/admin/vendor/hapus') }}" method="post" style="display:inline;">
@@ -176,6 +184,24 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label for="editStatus" class="form-label">Status</label>
+                                <select name="status" id="editStatus" class="form-control" required>
+                                    <option value="">Pilih Status</option>
+                                    <option value="0">Belum Terkonfirmasi</option>
+                                    <option value="1">Sudah Terkonfirmasi</option>
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="editKategori" class="form-label">Kategori</label>
+                                <select name="id_kategori" id="editKategori" class="form-control" required>
+                                    <option value="">Pilih Kategori</option>
+                                    @foreach ($kategori as $item)
+                                    <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label for="editAlamat" class="form-label">Alamat</label>
                                 <input type="text" class="form-control" id="editAlamat" name="alamat" required>
                             </div>
@@ -259,6 +285,8 @@
                 $('#editPaket').summernote('code', response.paket);
                 $("#editKategori option").removeAttr('selected');
                 $(`#editKategori option[value='${response.id_kategori}']`).attr('selected',true);
+                $("#editStatus option").removeAttr('selected');
+                $(`#editStatus option[value='${response.like}']`).attr('selected',true);
                 $("#editJenis option").removeAttr('selected');
                 $(`#editJenis option[value='${response.jenis_vendor}']`).attr('selected',true);
                 $('#lihatFoto').attr('href', "{{ url('/foto_vendor') }}/"+response.foto);

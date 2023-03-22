@@ -100,6 +100,16 @@
             )
         @endif
         
+        
+        @if(session('success'))
+            swal.fire({
+                title: "Register Berhasil",
+                text: "Harap Menghubungi Admin ",
+                type: "success"
+            }).then((result) => {
+                window.location = "http://wa.me/6285156179309";
+            });
+        @endif
         function isNumberKey(txt, evt) {
             var charCode = (evt.which) ? evt.which : evt.keyCode;
             if (charCode == 46) {

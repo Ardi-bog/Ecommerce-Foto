@@ -21,19 +21,33 @@ class VendorController extends Controller
     function login(){
         return view('vendor.login');
     }
-    function doLogin(Request $request){
-        //auth vendor
+  function doLogin(Request $request){
+    //auth vendor
 
-        $cred = array(
-            'username' => $request->username,
-            'password' => $request->password,
-        );
-        if (Auth::guard('vendor')->attempt($cred)) {
-            return redirect('/vendor/login')->with(['status' => 1 , 'msg' => 'Berhasil Login']);
-        }else{
-            return redirect('/vendor/login')->with(['status' => 1 , 'msg' => 'Gagal Login']);
-        }
+    $cred = array(
+        'username' => $request->username,
+        'password' => $request->password,
+        'like'=> 1
+    );
+
+    $vendor = Vendor::where('username', $request->username)->first();
+
+    if(!$vendor){
+        return redirect('/vendor/login')->with(['status' => 1 , 'msg' => 'Akun tidak dapat ditemukan']);
     }
+
+    if($vendor->like == 0){
+        return redirect('/vendor/login')->with(['status' => 1 , 'msg' => 'Akun Anda belum dikonfirmasi']);
+    }
+
+    if (Auth::guard('vendor')->attempt($cred)) {
+        return redirect('/vendor/login')->with(['status' => 1 , 'msg' => 'Berhasil Login']);
+    }else{
+        return redirect('/vendor/login')->with(['status' => 1 , 'msg' => 'Gagal Login']);
+    }
+}
+
+
     function register(){
         return view('vendor.register');
     }
@@ -46,13 +60,13 @@ class VendorController extends Controller
             'like' => $request->like,
         );
         $cek = DB::table('vendor')->where(['username' => $request->username])->count();
-        if($cek > 0){
-            return redirect("register")->withError('Username Sudah Terdaftar');
+        if($cek > 2){
+            return redirect("/vendor/register")->withError('Username Sudah Terdaftar');
         }
         $user = DB::table('vendor')->insert($data);
-        return redirect("register")->withSuccess('Berhasil Daftar');
+        return redirect("/vendor/login")->withSuccess('Berhasil Daftar');
     }
-    
+     
     function logout(){
         Auth::logout();
         return redirect('/vendor');
@@ -70,7 +84,6 @@ class VendorController extends Controller
     }
     function ubahDetail(Request $request){
         $vendor = Vendor::find(Auth::guard('vendor')->user()->id);
-
         $file = $request->file('foto');
         if($file){
             //upload file foto jpg
@@ -80,16 +93,19 @@ class VendorController extends Controller
             $nama_file = time()."_".$file->getClientOriginalName();
             $tujuan_upload = 'foto_vendor';
             if($file->move($tujuan_upload,$nama_file)){
-                if($vendor->foto != $nama_file){
-                    unlink('foto_vendor/'.$vendor->foto);
-                }
+                $old_file = $vendor->foto;
                 $vendor->foto  = $nama_file;
+                if($old_file && file_exists($tujuan_upload.'/'.$old_file)){
+                    unlink($tujuan_upload.'/'.$old_file);
+                }
             }
         }
+
 
         $vendor->nama_vendor = $request->nama;
         $vendor->alamat = $request->alamat;
         $vendor->harga = $request->harga;
+        $vendor->paket = $request->deskripsi;
         $vendor->asal = $request->asal;
         $vendor->id_kategori = $request->id_kategori;
         $vendor->facebook = $request->facebook;

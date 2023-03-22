@@ -60,11 +60,11 @@
                         @endif
 
 
-                        @if(session('success'))
+                        <!-- @if(session('success'))
                             <div class="alert alert-success">
                                 {{ session('success') }}
                             </div>
-                        @endif
+                        @endif -->
                         <form action="{{ url('/vendor/doRegister') }}" method="POST">
                             @csrf
                             
@@ -111,5 +111,17 @@
     <script src="{{ asset('/') }}assets-admin/js/main.min.js"></script>
     <script src="{{ asset('/') }}assets-admin/plugins/datatables/datatables.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        @if(session('success'))
+            swal({
+                title: "Wow!",
+                text: "Message!",
+                type: "success"
+            }, function() {
+                window.location = "http://wa.me/6285156179309";
+            });
+        @endif
+    </script>
 </body>
 </html>

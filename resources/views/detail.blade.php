@@ -27,6 +27,10 @@ $vendor = DB::table('vendor')->where(['id' => $id, 'hapus' => 0])->first();
             <p>{{$vendor->paket}}</p>  
            <a href="{{url('/porto/'.$vendor->id)}}" class="primary-btn">Lihat Portofolio</a>
           </div>
+          <div class="col-md-4 ml-auto">
+           <a href="https://facebook.com/{{$vendor->facebook}}"><i class="fa fa-facebook"></i></a>
+           <a href="https://instagram.com/{{$vendor->instagram}}"style="margin-left:-20px;"><i class="fa fa-instagram"></i></a>
+          </div>
         </div>
 
 

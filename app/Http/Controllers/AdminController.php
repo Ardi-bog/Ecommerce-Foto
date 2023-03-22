@@ -173,6 +173,7 @@ class AdminController extends Controller
             'no_telp' => $request->no_telp,
             'paket' => $request->paket,
             'id_kategori' => $request->id_kategori,
+            'like' => $request->status,
             'asal' => $request->asal,
             'harga' => $request->harga,
             'facebook' => $request->facebook,
@@ -180,8 +181,8 @@ class AdminController extends Controller
             'jenis_vendor' => $request->jenis_vendor,
             'updated_at' => date('Y-m-d H:i:s'),
         ];
+        //upload file foto jpg
         if ($request->hasFile('foto')) {
-            //upload file foto jpg
             $request->validate([
                 'foto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             ]);
@@ -189,10 +190,11 @@ class AdminController extends Controller
             $nama_file = time()."_".$file->getClientOriginalName();
             $tujuan_upload = 'foto_vendor';
             if($file->move($tujuan_upload,$nama_file)){
-                $data_update['foto'] = $foto;
+                $data_update['foto'] = $nama_file;
             }
             //end upload file
         }
+
         $update = DB::table('vendor')->where(['id' => $id])->update($data_update);
         if ($update) {
             return redirect('/admin/vendor')->with(['status' => 1 , 'msg' => 'Berhasil Mengubah Vendor']);
